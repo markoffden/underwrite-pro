@@ -5,3 +5,8 @@ $(document).ready(function() {
   });
   
 });
+
+var myFunk = (message) => {
+  console.log(message);
+}
+myFunk('grisha');

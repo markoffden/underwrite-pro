@@ -1,10 +1,9 @@
 // require dependencies
 var gulp = require('gulp'),
-    gutil = require('gulp-util'),
     connect = require('gulp-connect'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
-    uglify = require('gulp-uglify'),
+    babel = require('gulp-babel'),
     cleanCSS = require('gulp-clean-css'),
     rename = require('gulp-rename');
 
@@ -31,7 +30,10 @@ gulp.task('sass', function () {
 
 gulp.task('js', function () {
     gulp.src(jsSrc)
-        .pipe(uglify())
+        .pipe(babel({
+            minified: true,
+            presets: ['es2015']
+        }))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('app/js'))
         .pipe(connect.reload());
